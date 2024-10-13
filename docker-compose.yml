@@ -1,14 +1,21 @@
-version: "2"
 services:
-  db:
-    image: mysql:latest
-    ports:
-      - "7006:3306"
+  db: 
+    image: mysql:8.0
+    restart: always
     environment:
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
-    volumes:
-      - mysql_data:/var/lib/mysql
-volumes:
-  mysql_data:
+    ports:
+      - "3307:3306"
+  app: 
+    build: .
+    command: bundle exec rails s -p 3019 -b '0.0.0.0'
+    volumes: 
+      - ".:/app"
+    ports: 
+      - "3020:3019"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      DB_HOST: db
