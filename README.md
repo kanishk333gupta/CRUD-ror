@@ -16,7 +16,7 @@ If entrypoint.sh file is not created , we can create the db for first installati
 ```
 
 Sample database.yml
-```bash
+```ruby
 default: &default
   adapter: mysql2
   username: root
