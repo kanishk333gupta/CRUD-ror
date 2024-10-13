@@ -1,25 +1,16 @@
-# README
+## Dockerizing Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Create Rails Application
 
-Things you may want to cover:
+Create Database.yml, Dockerfile, docker-compose.yml
 
-* Ruby version
+```bash
+  docker-compose build
+  docker-compose up -d
+```
+If entrypoint.sh file is not created , we can create the db for first installation and run the migrations
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# Tester
+```bash
+ docker-compose run app bin/rails db:create
+ docker-compose run app rails db:migrate
+```
